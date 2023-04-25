@@ -19,10 +19,9 @@ RUN node --version
 RUN npm --version
 
 COPY src /home/app/src
-COPY frontend /home/app/frontend
 COPY lombok.config /home/app
 COPY pom.xml /home/app
 
 RUN mvn -B -DskipTests -f /home/app/pom.xml clean package
 
-ENTRYPOINT ["java","-jar","/home/app/target/example-1.1.0.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar /home/app/target/*.jar"]
